@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-function getComputerChoice(){
-    //rock paper scissors will be contained within something and at random it will randomly be extracted
-    let computerChoice = ['rock', 'paper', 'scissors'];
-    let stuff = computerChoice [Math.floor(Math.random()*computerChoice.length)];
-    return stuff;
-}
-// let hi = getComputerChoice();
-// console.log(hi);
-
-
+        function getComputerChoice() {
+            //rock paper scissors will be contained within something and at random it will randomly be extracted
+            let computerChoice = ['rock', 'paper', 'scissors'];
+            let stuff = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+            return stuff;
+        }
+        // let hi = getComputerChoice();
+        // console.log(hi);
+        function checkWinner(playerSelection, computerSelection) {
+            //creating a function that declares the winner between player and computer
+            //will randomly select player choice then computer choice then declare a winner
+            computerSelection = getComputerChoice();
+            if (playerSelection == computerSelection) {
+                return 'draw';
+            } else if ((playerSelection = 'rock' && computerSelection == 'scissors') ||
+                (playerSelection == 'paper' && computerSelection == 'rock') ||
+                (playerSelection == 'scissors' && computerSelection == 'paper')) {
+                return 'player';
+            } else {
+              return 'computer';
+            }
+        }
+        function playRound(){
+            const result = checkWinner(playerSelection, computerSelection);
+            if (playerSelection == computerSelection){
+                return 'its a draw';
+            }else if (result == 'player'){
+                return `Well done! ${playerSelection} beats ${computerSelection}`
+            }else {
+                return `You lose, ${computerSelection} beats ${playerSelection}`
+            }
+        }
+//         const playerSelection = "Rock";
+// const computerSelection = getComputerChoice();
+// console.log(playRound(playerSelection, computerSelection));
 
 
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
