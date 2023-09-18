@@ -15,54 +15,65 @@
         // let hi = getComputerChoice();
         // console.log(hi);
         function checkWinner(playerSelection, computerSelection) {
-            //creating a function that declares the winner between player and computer
-            //will randomly select player choice then computer choice then declare a winner
-            computerSelection = getComputerChoice();
-            if (playerSelection == computerSelection) {
-                return 'draw';
-            } else if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
-                (playerSelection == 'paper' && computerSelection == 'rock') ||
-                (playerSelection == 'scissors' && computerSelection == 'paper')) {
-                return 'player';
-            } else {
-              return 'computer';
-            }
-        }
-        function playRound(){
+    computerSelection = getComputerChoice();
+    if (playerSelection === computerSelection) {
+        return 'draw';
+    } else if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')
+    ) {
+        return 'player';
+    } else {
+        return 'computer';
+    }
+}
+
+        function playRound(playerSelection, computerSelection) {
             const result = checkWinner(playerSelection, computerSelection);
-            if (playerSelection == computerSelection){
+            if (playerSelection == computerSelection) {
                 return 'its a draw';
-            }else if (result == 'player'){
+            } else if (result == 'player') {
                 return `Well done! ${playerSelection} beats ${computerSelection}`
-            }else {
+            } else {
                 return `You lose, ${computerSelection} beats ${playerSelection}`
             }
         }
-//         const playerSelection = "Rock";
-// const computerSelection = getComputerChoice();
-// console.log(playRound(playerSelection, computerSelection));
 
 
-function userPrompt(){
-    while(checkWinner()){
-        let input = window.prompt('rock, paper or scissors');
-        if(input == null){
-            continue;
-        } else if (input == true){
-           game();
+        function userInput(playerSelection) {
+            let userValue = window.prompt('Rock, paper or scissors?');
+            if (userValue == null) {
+                window.prompt('Please enter rock paper or scissors')
+                return userInput();
+            } else if (userValue.toLowerCase() == 'rock' || userValue.toLowerCase() == 'paper' || userValue.toLowerCase() == 'scissors') {
+                return userValue.toLowerCase();
+                // playerSelection == userValue.toLowerCase();
+                // game();
+            } else {
+                window.prompt('not an input please type something');
+                return userInput();
+
+            }
+        }
+        userInput();
+        function game() {
+            //Loop playround 5 times and display the result of each round easy to do without loop
+            //use prompt to get input from user which will dictate if they have won or lost
+            for (let i = 0; i < 5; i++) {
+                const playerSelection = userInput();
+                const computerSelection = getComputerChoice();
+                console.log(playRound(playerSelection, computerSelection));
+            }
 
         }
-    }
-}
-userPrompt();
-function game(){
-    for(i=0;i<=5;i++){
-      playRound();  
-      const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
-    }
-}
+
+        // const playerSelection = "Rock";
+        //         const computerSelection = getComputerChoice();
+        //         console.log(playRound(playerSelection, computerSelection));
+        document.addEventListener("DOMContentLoaded", function () {
+            game();
+        });
 
     </script>
 </head>
